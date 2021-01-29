@@ -35,6 +35,8 @@
         <p>Put shapes as "head", "body" etc to use that shape for that section.</p>
         <p>Press merge!</p>
         
+        <h1>Getting to it!</h1>
+        
         <lable><input type="file" id="input-base">Base</lable><br/>
         
         <lable><input type="file" id="input-head">Head</lable><br/>
@@ -118,7 +120,7 @@
             return serializer.serializeToString(xml);
           }
           
-          function async merge()
+          async function merge()
           {
             if (baseInput.files == 0)
             {
