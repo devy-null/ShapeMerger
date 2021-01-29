@@ -19,9 +19,21 @@
 
     <div class="container">
       <section id="main_content">
+        
+        <h1>What?</h1>
+        <p>Have you ever encountered the problem that you had a body shape that you like, but your head have another shape?</p>
+        <p>As you can only have one shape, it can be troublesome.</p>
+        <p>What if you could combine shapes?</p>
+        
+        <h1>How to export your shape</h1>
+        <p>Wear the shape you want to export.</p>
+        <p>Press Ctrl + Alt + Q to show the Developer menu at the top bar of the screen if you can't see it.</p>
+        <p>Press Developer > Avatar > Character Test > Apparance To XML</p>
       
         <h1>How to merge</h1>
-        <p>Get the shape file from your head, and for your body and press merge!</p>
+        <p>Put a shape as "base".</p>
+        <p>Put shapes as "head", "body" etc to use that shape for that section.</p>
+        <p>Press merge!</p>
         
         <lable><input type="file" id="input-base">Base</lable><br/>
         
@@ -85,7 +97,13 @@
               headInput = document.getElementById('input-head'),
               bodyInput = document.getElementById('input-body'),
               torsoInput = document.getElementById('input-torso'),
-              legsInput = document.getElementById('input-legs');
+              legsInput = document.getElementById('input-legs'),
+              inputs = [
+                { input: headInput, sections: head },
+                { input: bodyInput, sections: body },
+                { input: torsoInput, sections: torso },
+                { input: legsInput, sections: legs }
+              ];
           
           var parser = new DOMParser(),
               serializer = new XMLSerializer();
@@ -109,6 +127,16 @@
             else
             {
               var base = loadXML(await baseInput.files[0].text());
+              
+              console.log(base);
+              
+              inputs.forEach((set) => {
+                if (set.input.files && set.input.files[0])
+                {
+                  var data = loadXML(await set.input.files[0].text());
+                  
+                }
+              });
             }
           }
         </script>
