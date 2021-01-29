@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/ShapeMerger/assets/css/style.css?v=6b4ddb1a623c776285a4c080e63a4c14ce0f8457">
+    <title>Welcome to GitHub Pages | ShapeMerger</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <a id="a-title" href="/ShapeMerger/">
+          <h1>ShapeMerger</h1>
+        </a>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+      
+        <h1>How to merge</h1>
+        <p>Get the shape file from your head, and for your body and press merge!</p>
+        
+        <lable><input type="file" id="input-base">Base</lable><br/>
+        
+        <lable><input type="file" id="input-head">Head</lable><br/>
+        <!-- <lable><input type="file" id="input-eyes">Eyes</lable> -->
+        <!-- <lable><input type="file" id="input-ears">Ears</lable> -->
+        <!-- <lable><input type="file" id="input-nose">Nose</lable> -->
+        <!-- <lable><input type="file" id="input-mouth">Mouth</lable> -->
+        <!-- <lable><input type="file" id="input-chin">Chin</lable> -->
+        
+        <lable><input type="file" id="input-body">Body</lable><br/>
+        <lable><input type="file" id="input-torso">Torso</lable><br/>
+        <lable><input type="file" id="input-legs">Legs</lable><br/>
+        
+        <script>
+          var head = [
+                "Head Size",
+                "Head Stretch",
+                "Head Shape",
+                "Egg Head",
+                "Head Length",
+                "Face Shear",
+                "Forehead Angle",
+                "Brow Size",
+                "Upper Cheeks",
+                "Lower Cheeks",
+                "Cheek Bones"
+              ],
+              body = [
+                "Height",
+                "Body Thickness",
+                "Body Fat",
+                "Hover"
+              ],
+              torso = [
+                "Torso Muscles",
+                "Torso Muscles",
+                "Neck Thickness",
+                "Neck Length",
+                "Shoulders",
+                "Breast Size",
+                "Breast Buoyancy",
+                "Breast Cleavage",
+                "Arm Length",
+                "Hand Size",
+                "Torso Length",
+                "Love Handles",
+                "Belly Size"
+              ],
+              legs = [
+                "Leg Muscles",
+                "Leg Length",
+                "Hip Width",
+                "Hip Length",
+                "Butt Size",
+                "Saddle Bags",
+                "Knee Angle",
+                "Foot Size"
+              ],
+              baseInput = document.getElementById('input-base'),
+              headInput = document.getElementById('input-head'),
+              bodyInput = document.getElementById('input-body'),
+              torsoInput = document.getElementById('input-torso'),
+              legsInput = document.getElementById('input-legs');
+          
+          var parser = new DOMParser(),
+              serializer = new XMLSerializer();
+          
+          function loadXML(xml)
+          {
+            return parser.parseFromString(xml, "text/xml");
+          }
+          
+          function saveXML(xml)
+          {
+            return serializer.serializeToString(xml);
+          }
+          
+          function async merge()
+          {
+            if (baseInput.files == 0)
+            {
+              alert('You must have a base!');
+            }
+            else
+            {
+              var base = loadXML(await baseInput.files[0].text());
+            }
+          }
+        </script>
+        
+        <button onclick="merge()">Merge!</button>
+      </section>
+    </div>
+  </body>
+</html>
